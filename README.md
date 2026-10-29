@@ -4,7 +4,8 @@ The landing page for [Bow](https://github.com/Rektoooooo/bow), the open-source b
 Live at **https://bowbrowser.sebthe.dev**.
 
 Built with Vite, React 19, TypeScript and Tailwind CSS v4. Fonts are Geist and Geist Mono (OFL), bundled through
-Fontsource. Every illustration is drawn with HTML, CSS and SVG. The only images are Bow's icon and one screenshot for link previews (`public/`), and
+Fontsource. Every illustration is drawn with HTML, CSS and SVG. The only images are Bow's icon and the link-preview image (`public/`, made from the hero by
+`scripts/og-image.js`), and
 the hero's cloud layer, which is rendered from our own SVG (`src/components/skyClouds.ts`) to AVIF and WebP in
 four widths (`src/assets/sky/`, up to 3840px for Retina screens) so the page stays smooth and sharp.
 

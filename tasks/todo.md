@@ -227,3 +227,10 @@ before the API answered, when it failed (rate limit, offline, blocked) or when a
 `github.com/Rektoooooo/bow/releases/latest` (always the newest release, one extra click), and a release without the
 usual file names links to that release's page. Checked with mocked API answers: real, 403, blocked, slow, v0.2.0,
 v0.2.0 with other file names.
+
+## Link preview image (2026-10-29)
+
+`public/og-image.jpg` (2400x1260, 165 KB, under WhatsApp's ~300 KB limit) is the hero itself, rendered edge to edge
+with the Command Bar open mid-search (`scripts/og-image.js`; re-run it after changing the hero). og:image with
+width, height and alt, twitter:image and og:site_name point at it. The old Bow screenshot it replaces is removed.
+Apps cache previews per link, so a link already shared may keep its old image for a while.
