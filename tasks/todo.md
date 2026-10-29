@@ -211,7 +211,7 @@ that records, at each press, the tagged element under the arrow's tip:
 - [x] `.github/workflows/deploy.yml`: push to main → `npm ci` + `npm run build` → GitHub Pages (workflow source).
 - [x] Pages custom domain `bowbrowser.sebthe.dev` set before DNS (no takeover window); `public/CNAME` mirrors it.
 - [x] Namecheap Advanced DNS (sebthe.dev): CNAME `bowbrowser` → `rektoooooo.github.io.`, Automatic TTL; added in the
-      Playwright browser after Seb signed in himself and approved the row. Other records untouched.
+      Playwright browser after Seb signed in and approved the row. Other records untouched.
 - [x] Certificate: GitHub only requested it after the domain was removed and re-added once DNS resolved; approved,
       HTTPS enforced, http → 301.
 - [x] canonical, og:url and og:image are absolute https://bowbrowser.sebthe.dev URLs.
