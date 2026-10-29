@@ -203,3 +203,18 @@ that records, at each press, the tagged element under the arrow's tip:
   the loop's slow frames. Both layouts now keep fixed sizes; the new pane slides in with a transform, the two
   layouts fade through a white underlay clipped with clip-path (no double heading). CLS 0.000 over the loop and
   a full scroll at 390/820/1180/1440; hero loop 100 fps with no frame over 50 ms.
+
+## Live at bowbrowser.sebthe.dev (2026-10-29)
+
+- [x] Repo `Rektoooooo/bowbrowser.sebthe.dev` (public, named after the domain like the other sites); commits use
+      the GitHub no-reply address, staged files scanned for personal data before the first push.
+- [x] `.github/workflows/deploy.yml`: push to main → `npm ci` + `npm run build` → GitHub Pages (workflow source).
+- [x] Pages custom domain `bowbrowser.sebthe.dev` set before DNS (no takeover window); `public/CNAME` mirrors it.
+- [x] Namecheap Advanced DNS (sebthe.dev): CNAME `bowbrowser` → `rektoooooo.github.io.`, Automatic TTL; added in the
+      Playwright browser after Seb signed in himself and approved the row. Other records untouched.
+- [x] Certificate: GitHub only requested it after the domain was removed and re-added once DNS resolved; approved,
+      HTTPS enforced, http → 301.
+- [x] canonical, og:url and og:image are absolute https://bowbrowser.sebthe.dev URLs.
+- [x] Live check at 390 @3x / 820 @2x / 1440 @2x: 200, no console errors or failed requests, no broken images, no
+      overflow, right sky size per screen, Download → v0.1.0 DMG (302 to GitHub's CDN).
+- [ ] Optional: point the Bow repo's "Website" field and README at https://bowbrowser.sebthe.dev.
