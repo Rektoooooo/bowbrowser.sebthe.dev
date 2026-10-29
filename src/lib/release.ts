@@ -5,18 +5,22 @@ export const RELEASES = `${REPO}/releases`;
 export const LATEST_RELEASE = `${REPO}/releases/latest`;
 
 export type Release = {
-  version: string;
+  /** Null until GitHub has told us which release is the latest. */
+  version: string | null;
   dmg: string;
   zip: string;
   notes: string;
 };
 
-/** The release this page was written against; used until (or if) the GitHub API answers. */
+/**
+ * Used until (or if) the GitHub API answers: GitHub's "latest release" page, which always redirects to the newest
+ * release. It costs one more click, but unlike a hardcoded file it can never hand out an old version.
+ */
 const FALLBACK: Release = {
-  version: "0.1.0",
-  dmg: `${REPO}/releases/download/v0.1.0/Bow-0.1.0-arm64.dmg`,
-  zip: `${REPO}/releases/download/v0.1.0/Bow-0.1.0-arm64.zip`,
-  notes: `${REPO}/releases/tag/v0.1.0`,
+  version: null,
+  dmg: LATEST_RELEASE,
+  zip: LATEST_RELEASE,
+  notes: LATEST_RELEASE,
 };
 
 type GitHubAsset = { name: string; browser_download_url: string };
@@ -58,8 +62,9 @@ function fetchLatest(): Promise<Release> {
       const asset = (ext: string) => data.assets.find((a) => a.name.endsWith(`arm64.${ext}`))?.browser_download_url;
       const release = {
         version: data.tag_name.replace(/^v/, ""),
-        dmg: asset("dmg") ?? FALLBACK.dmg,
-        zip: asset("zip") ?? FALLBACK.zip,
+        // A release without the usual file names still sends people to that release, not an older one.
+        dmg: asset("dmg") ?? data.html_url,
+        zip: asset("zip") ?? data.html_url,
         notes: data.html_url,
       };
       store(release);
@@ -69,7 +74,7 @@ function fetchLatest(): Promise<Release> {
   return cached;
 }
 
-/** Latest Bow release from GitHub, starting from the known one so links work before the request finishes. */
+/** Latest Bow release from GitHub; until it answers, the links go to the latest-release page. */
 export function useRelease(): Release {
   const [release, setRelease] = useState(FALLBACK);
   useEffect(() => {

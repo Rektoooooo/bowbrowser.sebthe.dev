@@ -218,3 +218,12 @@ that records, at each press, the tagged element under the arrow's tip:
 - [x] Live check at 390 @3x / 820 @2x / 1440 @2x: 200, no console errors or failed requests, no broken images, no
       overflow, right sky size per screen, Download → v0.1.0 DMG (302 to GitHub's CDN).
 - [ ] Optional: point the Bow repo's "Website" field and README at https://bowbrowser.sebthe.dev.
+
+## Download button never serves an old version (2026-10-29)
+
+The button already followed the latest release through the GitHub API, but fell back to hardcoded v0.1.0 links
+before the API answered, when it failed (rate limit, offline, blocked) or when a release's files weren't named
+`…arm64.dmg`, which would hand out 0.1.0 once newer releases exist. The fallback is now
+`github.com/Rektoooooo/bow/releases/latest` (always the newest release, one extra click), and a release without the
+usual file names links to that release's page. Checked with mocked API answers: real, 403, blocked, slow, v0.2.0,
+v0.2.0 with other file names.

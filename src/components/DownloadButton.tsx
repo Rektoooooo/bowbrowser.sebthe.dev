@@ -53,7 +53,7 @@ export function DownloadButton({
             "flex items-center gap-2 rounded-l-[inherit] whitespace-nowrap transition-colors hover:bg-white/10 focus-visible:bg-white/15 focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white/70 focus-visible:outline-solid",
             s.main,
           )}
-          aria-label={`Download Bow ${release.version} for macOS (Apple silicon)`}
+          aria-label={`Download ${release.version ? `Bow ${release.version}` : "the latest Bow"} for macOS (Apple silicon)`}
         >
           {s.icon && <Download className="size-4" strokeWidth={2.25} aria-hidden="true" />}
           {label ??
@@ -101,7 +101,11 @@ export function DownloadButton({
           macOS archive
         </MenuItem>
         <div className="mx-2.5 my-1 h-px bg-black/6" />
-        <MenuItem href={release.notes} icon={<History className="size-4" />} hint={`v${release.version}`}>
+        <MenuItem
+          href={release.notes}
+          icon={<History className="size-4" />}
+          hint={release.version ? `v${release.version}` : undefined}
+        >
           Release notes
         </MenuItem>
         <MenuItem href={RELEASES} icon={<Download className="size-4" />}>
